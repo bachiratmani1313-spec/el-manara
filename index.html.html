@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AL-MANARA AI | المنارة</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=JetBrains+Mono&family=Amiri:wght@400;700&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
-        /* --- DESIGN GLOBAL (ARABIC LAYOUT) --- */
+        /* --- CSS --- */
         :root {
             --bg-dark: #0a0f0d;
             --bg-panel: #111a16;
@@ -15,172 +15,50 @@
             --neon-green: #2ecc71;
             --text-main: #e0e0e0;
             --border-color: #2c3e30;
-            --font-ui: 'Tajawal', sans-serif; /* Police arabe moderne */
-            --font-tech: 'JetBrains Mono', monospace;
+            --font-ui: 'Tajawal', sans-serif;
+            --font-tech: 'Courier New', monospace;
             --font-arabic: 'Amiri', serif;
         }
 
-        body { 
-            background-color: var(--bg-dark); 
-            color: var(--text-main); 
-            font-family: var(--font-ui); 
-            padding: 20px; 
-            margin: 0;
-        }
-
+        body { background-color: var(--bg-dark); color: var(--text-main); font-family: var(--font-ui); padding: 20px; margin: 0; }
         .container { max-width: 1000px; margin: 0 auto; }
-
-        header { 
-            text-align: center; 
-            margin-bottom: 40px; 
-            border-bottom: 1px solid var(--border-color); 
-            padding-bottom: 20px; 
-        }
-
+        header { text-align: center; margin-bottom: 40px; border-bottom: 1px solid var(--border-color); padding-bottom: 20px; }
         .logo { font-size: 3rem; color: var(--gold-accent); margin-bottom: 10px; display: inline-block; }
-        h1 { color: #fff; margin: 0; font-weight: 300; letter-spacing: 2px; font-size: 2.5rem; }
-        .subtitle { color: var(--text-muted); font-size: 1rem; letter-spacing: 1px; margin-top: 5px; }
+        h1 { color: #fff; margin: 0; font-weight: 300; font-size: 2.5rem; }
+        .subtitle { color: var(--text-muted); font-size: 1rem; margin-top: 5px; }
 
-        .grid { 
-            display: grid; 
-            grid-template-columns: 1fr; 
-            gap: 30px; 
-        }
+        .grid { display: grid; grid-template-columns: 1fr; gap: 30px; }
         @media(min-width: 768px) { .grid { grid-template-columns: 1fr 1fr; } }
 
-        .panel { 
-            background: var(--bg-panel); 
-            border: 1px solid var(--border-color); 
-            border-radius: 12px; 
-            padding: 20px; 
-            display: flex; 
-            flex-direction: column; 
-            transition: 0.3s; 
-        }
+        .panel { background: var(--bg-panel); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; display: flex; flex-direction: column; }
         .panel:hover { border-color: var(--gold-accent); }
 
-        .panel-title { 
-            color: #fff; 
-            display: flex; 
-            align-items: center; 
-            gap: 10px; 
-            margin-bottom: 15px; 
-            font-size: 1.4rem; 
-            border-bottom: 1px solid rgba(255,255,255,0.05); 
-            padding-bottom: 10px; 
-        }
+        .panel-title { color: #fff; display: flex; align-items: center; gap: 10px; margin-bottom: 15px; font-size: 1.4rem; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 10px; }
+        .bot-role { font-size: 0.7rem; color: var(--neon-green); font-family: var(--font-tech); text-transform: uppercase; margin-right: auto; }
 
-        .bot-role { 
-            font-size: 0.7rem; 
-            color: var(--neon-green); 
-            font-family: var(--font-tech); 
-            text-transform: uppercase; 
-            margin-right: auto; 
-        }
-
-        /* --- STYLE COMMUN --- */
         .input-group { margin-bottom: 15px; }
         label { display: block; font-size: 0.9rem; color: #888; margin-bottom: 5px; }
-        
-        select, textarea, input[type="text"] {
-            width: 100%; 
-            background: #000; 
-            border: 1px solid #333; 
-            color: #fff; 
-            padding: 10px; 
-            border-radius: 6px; 
-            font-family: var(--font-ui); 
-            box-sizing: border-box; 
-            text-align: right; 
-            direction: rtl;
-        }
-        
+        select, textarea, input[type="text"] { width: 100%; background: #000; border: 1px solid #333; color: #fff; padding: 10px; border-radius: 6px; font-family: var(--font-ui); box-sizing: border-box; text-align: right; direction: rtl; }
         select:focus, textarea:focus, input:focus { outline: 1px solid var(--gold-accent); }
 
-        .btn-action { 
-            width: 100%; 
-            padding: 12px; 
-            border: none; 
-            border-radius: 6px; 
-            font-weight: bold; 
-            cursor: pointer; 
-            transition: 0.3s; 
-            font-size:1rem;
-            margin-top: 10px;
-        }
+        .btn-action { width: 100%; padding: 12px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.3s; font-size: 1rem; margin-top: 10px; }
+        .output-area { min-height: 150px; background: rgba(0,0,0,0.5); border: 1px dashed var(--border-color); border-radius: 8px; padding: 15px; margin-top: 20px; font-size: 0.95rem; }
 
-        .output-area { 
-            min-height: 150px; 
-            background: rgba(0,0,0,0.5); 
-            border: 1px dashed var(--border-color); 
-            border-radius: 8px; 
-            padding: 15px; 
-            margin-top: 20px; 
-            font-size: 0.95rem; 
-        }
-
-        /* --- BOUTONS DE PARTAGE --- */
-        .share-buttons {
-            margin-top: 15px;
-            display: flex;
-            gap: 10px;
-            justify-content: flex-start;
-        }
-
-        .share-btn {
-            flex: 1;
-            padding: 8px;
-            border-radius: 4px;
-            color: #fff;
-            text-decoration: none;
-            font-size: 0.9rem;
-            text-align: center;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 5px;
-        }
+        .share-buttons { margin-top: 10px; display: flex; gap: 10px; }
+        .share-btn { flex: 1; padding: 8px; border-radius: 4px; color: #fff; text-decoration: none; font-size: 0.9rem; text-align: center; font-weight: bold; }
         .share-whatsapp { background: #25D366; }
         .share-facebook { background: #1877F2; }
         .share-twitter { background: #000; border: 1px solid #333; }
-        .share-btn:hover { opacity: 0.8; }
 
-        /* --- SPÉCIFIQUES --- */
         .btn-trans { background: var(--gold-accent); color: #000; }
         .btn-trans:hover { background: #f1c40f; }
-        .result-arabic { 
-            font-family: var(--font-arabic); 
-            font-size: 1.6rem; 
-            color: var(--gold-accent); 
-            direction: rtl; 
-            text-align: right; 
-            line-height: 1.6; 
-        }
-
         .btn-hadith { background: #2980b9; color: #fff; }
         .btn-hadith:hover { background: #3498db; }
         
-        .hadith-header { 
-            font-size: 0.8rem; 
-            color: var(--gold-accent); 
-            margin-bottom: 10px; 
-            font-family: var(--font-tech); 
-            border-bottom: 1px solid #333; 
-            padding-bottom:5px; 
-        }
-        .hadith-text { 
-            font-style: italic; 
-            color: #ddd; 
-            line-height: 1.5; 
-            margin-bottom: 15px; 
-            font-size: 1.1rem;
-        }
-        .hadith-source { 
-            text-align: left; 
-            color: #888; 
-            font-size: 0.9rem; 
-        }
+        .result-arabic { font-family: var(--font-arabic); font-size: 1.6rem; color: var(--gold-accent); line-height: 1.6; }
+        .hadith-header { font-size: 0.8rem; color: var(--gold-accent); margin-bottom: 10px; font-family: var(--font-tech); border-bottom: 1px solid #333; padding-bottom:5px; }
+        .hadith-text { font-style: italic; color: #ddd; line-height: 1.5; margin-bottom: 15px; font-size: 1.1rem; }
+        .hadith-source { text-align: left; color: #888; font-size: 0.9rem; }
         .error-msg { color: #e74c3c; font-weight: bold; background: rgba(231, 76, 60, 0.1); padding: 10px; border-radius: 5px; margin-top: 10px; text-align: right;}
 
     </style>
@@ -196,7 +74,7 @@
 
     <div class="grid">
 
-        <!-- --- TRADUCTEUR (BIDIRECTIONNEL) --- -->
+        <!-- --- TRADUCTEUR --- -->
         <div class="panel">
             <div class="panel-title">
                 <span>🗣️</span> عبد البيان (المترجم)
@@ -205,7 +83,7 @@
             <p style="font-size: 0.8rem; color:#888; margin-bottom:15px;">ترجم من أي لغة إلى العربية والعكس.</p>
 
             <div class="input-group">
-                <label>اللغة المصدر (Langue Source) :</label>
+                <label>اللغة المصدر :</label>
                 <select id="sourceLang">
                     <option value="ar">العربية (Arabe)</option>
                     <option value="fr">Français</option>
@@ -215,46 +93,53 @@
             </div>
 
             <div class="input-group">
-                <label>النص (Texte) :</label>
+                <label>النص :</label>
                 <textarea id="translateInput" rows="4" placeholder="اكتب النص هنا..."></textarea>
             </div>
 
             <button class="btn-action btn-trans" onclick="runTranslation()">ترجمة ⚡</button>
 
             <div id="translateOutput" class="output-area">
-                <span style="color:#555; font-style:italic;">الترجمة ستظهر هنا...</span>
+                <span style="color:#555;">الترجمة ستظهر هنا...</span>
             </div>
         </div>
 
 
-        <!-- --- BOT HADITH (LIT DATA.JS) --- -->
+        <!-- --- BOT HADITH (INTÉGRÉ) --- -->
         <div class="panel">
             <div class="panel-title">
                 <span>📖</span> عبد العليم (خبير الحديث)
                 <span class="bot-role">الحديث النبوي</span>
             </div>
-            <p style="font-size: 0.8rem; color:#888; margin-bottom:15px;">ابحث في رياض الصالحين بالكلمات المفتاحية.</p>
+            <p style="font-size: 0.8rem; color:#888; margin-bottom:15px;">ابحث في رياض الصالحين.</p>
 
             <div class="input-group">
-                <label>بحثك (مثلاً: نية، والدان) :</label>
+                <label>بحثك (مثلاً: نية، والدان، كذب) :</label>
                 <input type="text" id="hadithInput" placeholder="اكتب موضوعاً...">
             </div>
 
             <button class="btn-action btn-hadith" onclick="searchHadith()">بحث 📚</button>
 
             <div id="hadithOutput" class="output-area">
-                <span style="color:#555; font-style:italic;">أدخل موضوعاً لرؤية الحديث...</span>
+                <span style="color:#555;">أدخل موضوعاً لرؤية الحديث...</span>
             </div>
         </div>
 
     </div>
 </div>
 
-<!-- LEXIQUE DE DONNÉES EXTERNE -->
-<script src="data.js"></script>
-
 <script>
-    // --- CERVEAU 1 : TRADUCTEUR (BIDIRECTIONNEL) ---
+    // --- BASE DE DONNÉES INTÉGRÉE (NE NÉCESSITE PLUS DATA.JS) ---
+    const hadithDB = [
+        { keywords: ["نية", "نيات"], text: "إنما الأعمال بالنيات، وإنما لكل امرئ ما نوى.", ref: "Riyad as-Salihin", page: "1" },
+        { keywords: ["bonne action", "صالح"], text: "أبشروا وأملوا ما يسركم، والاستعانة بالله ولا تعجزن.", ref: "Riyad as-Salihin", page: "59" },
+        { keywords: ["والدان", "أب", "أم"], text: "الجنة تحت أقدام الأمهات.", ref: "Riyad as-Salihin", page: "338" },
+        { keywords: ["mentir", "كذب"], text: "عليكم بالصدق، فإن الصدق يهدي إلى البر، وإن البر يهدي إلى الجنة.", ref: "Riyad as-Salihin", page: "64" },
+        { keywords: ["colère", "غضب"], text: "ليس الشديد بالصُّرَعة، إنما الشديد الذي يملك نفسه عند الغضب.", ref: "Riyad as-Salihin", page: "1562" },
+        { keywords: ["sourire", "بشاشة"], text: "لا تحقرن من المعروف شيئاً، ولو أن تلقى أخاك بوجه طلق.", ref: "Riyad as-Salihin", page: "622" }
+    ];
+
+    // --- CERVEAU 1 : TRADUCTEUR ---
     async function runTranslation() {
         const lang = document.getElementById('sourceLang').value;
         const text = document.getElementById('translateInput').value.trim();
@@ -262,58 +147,38 @@
 
         if(!text) { alert("الرجاء إدخال نص."); return; }
 
-        outputDiv.innerHTML = '<span style="color:var(--neon-green)">جاري الاتصال بالخادم...</span>';
+        outputDiv.innerHTML = '<span style="color:var(--neon-green)">جاري الاتصال...</span>';
 
         try {
-            // LOGIQUE : Si Arabe -> Français. Sinon -> Arabe.
-            let targetLanguage = "ar";
-            if (lang === "ar") {
-                targetLanguage = "fr";
-            }
+            // Détection auto : Si Arabe -> Français. Si autre -> Arabe.
+            let target = "ar";
+            if (lang === "ar") target = "fr";
 
-            const apiUrl = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=${lang}|${targetLanguage}`;
-            
+            const apiUrl = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=${lang}|${target}`;
             const response = await fetch(apiUrl);
-            if(!response.ok) throw new Error("Réponse API invalide");
+            
+            if(!response.ok) throw new Error("Erreur API");
             const data = await response.json();
 
             if(data.responseStatus === 200) {
-                const translatedText = data.responseData.translatedText;
-                
-                // Style dynamique selon la langue cible
-                const direction = (targetLanguage === "ar") ? "rtl" : "ltr";
-                const textAlign = (targetLanguage === "ar") ? "right" : "left";
-
+                const t = data.responseData.translatedText;
+                const dir = (target === "ar") ? "rtl" : "ltr";
                 outputDiv.innerHTML = `
-                    <div class="result-arabic" style="direction: ${direction}; text-align: ${textAlign}; font-family: ${targetLanguage === 'ar' ? 'var(--font-arabic)' : 'var(--font-ui)'};">
-                        ${translatedText}
-                    </div>
+                    <div class="result-arabic" style="direction:${dir}; text-align:${dir === 'rtl'?'right':'left'}">${t}</div>
                     <div class="share-buttons">
-                        <a href="https://api.whatsapp.com/send?text=${encodeURIComponent(translatedText)}" target="_blank" class="share-btn share-whatsapp">واتساب</a>
-                        <a href="https://twitter.com/intent/tweet?text=${encodeURIComponent(translatedText)}" target="_blank" class="share-btn share-twitter">تويتر</a>
-                        <a href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}" target="_blank" class="share-btn share-facebook">فيسبوك</a>
+                        <a href="https://api.whatsapp.com/send?text=${encodeURIComponent(t)}" target="_blank" class="share-btn share-whatsapp">واتساب</a>
+                        <a href="https://twitter.com/intent/tweet?text=${encodeURIComponent(t)}" target="_blank" class="share-btn share-twitter">تويتر</a>
                     </div>
                 `;
             } else {
-                outputDiv.innerHTML = `<div class="error-msg">Erreur API : ${data.responseDetails}</div>`;
+                outputDiv.innerHTML = `<div class="error-msg">Erreur de traduction.</div>`;
             }
         } catch (error) {
-            outputDiv.innerHTML = `<div class="error-msg">Erreur de connexion (Vérifiez si data.js existe).</div>`;
+            outputDiv.innerHTML = `<div class="error-msg">Erreur de connexion (Testez sur le site en ligne, pas en local).</div>`;
         }
     }
 
-    // --- CERVEAU 2 : HADITH (SECURISÉ) ---
-    
-    // Base de données de secours si data.js n'est pas chargé
-    const hadithDB_Fallback = [
-        { keywords: ["نية", "نيات"], text: "إنما الأعمال بالنيات.", ref: "Riyad as-Salihin", page: "1" },
-        { keywords: ["والدان", "أب", "أم"], text: "الجنة تحت أقدام الأمهات.", ref: "Riyad as-Salihin", page: "338" },
-        { keywords: ["كذب", "كذب"], text: "عليكم بالصدق فإن الصدق يهدي إلى البر.", ref: "Riyad as-Salihin", page: "64" }
-    ];
-
-    // Utilisation de data.js ou du fallback
-    const dbToUse = (typeof hadithDB !== 'undefined') ? hadithDB : hadithDB_Fallback;
-
+    // --- CERVEAU 2 : HADITH ---
     function searchHadith() {
         const input = document.getElementById('hadithInput').value.trim();
         const outputDiv = document.getElementById('hadithOutput');
@@ -321,14 +186,14 @@
 
         if(!input) { alert("الرجاء كتابة موضوع."); return; }
 
-        dbToUse.forEach(item => {
+        hadithDB.forEach(item => {
             if(item.keywords.some(k => input.includes(k))) {
                 outputDiv.innerHTML = `
-                    <div class="hadith-header">📚 ${item.ref} | صفحة ${item.page}</div>
+                    <div class="hadith-header">📚 ${item.ref} | Page ${item.page}</div>
                     <div class="hadith-text">"${item.text}"</div>
                     <div class="share-buttons">
-                        <a href="https://api.whatsapp.com/send?text=${encodeURIComponent('حديث شريف: ' + item.text)}" target="_blank" class="share-btn share-whatsapp">واتساب</a>
-                        <a href="https://twitter.com/intent/tweet?text=${encodeURIComponent('حديث شريف: ' + item.text)}" target="_blank" class="share-btn share-twitter">تويتر</a>
+                        <a href="https://api.whatsapp.com/send?text=${encodeURIComponent('حديث: ' + item.text)}" target="_blank" class="share-btn share-whatsapp">واتساب</a>
+                        <a href="https://twitter.com/intent/tweet?text=${encodeURIComponent('حديث: ' + item.text)}" target="_blank" class="share-btn share-twitter">تويتر</a>
                     </div>
                 `;
                 found = true;
@@ -336,7 +201,7 @@
         });
 
         if(!found) {
-            outputDiv.innerHTML = '<div class="error-msg">لم يتم العثور على الموضوع. جرب: "نية"، "والدان"، "كذب"...</div>';
+            outputDiv.innerHTML = '<div class="error-msg">لم يتم العثور. جرب: "نية"، "والدان"، "كذب".</div>';
         }
     }
 </script>
