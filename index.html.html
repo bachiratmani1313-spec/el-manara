@@ -16,17 +16,42 @@
             --text-main: #e0e0e0;
             --border-color: #2c3e30;
             --font-ui: 'Tajawal', sans-serif;
-            --font-tech: 'Courier New', monospace;
             --font-arabic: 'Amiri', serif;
         }
 
         body { background-color: var(--bg-dark); color: var(--text-main); font-family: var(--font-ui); padding: 20px; margin: 0; }
         .container { max-width: 1000px; margin: 0 auto; }
-        header { text-align: center; margin-bottom: 40px; border-bottom: 1px solid var(--border-color); padding-bottom: 20px; }
+        
+        /* HEADER & LANGUE SWITCHER */
+        header { text-align: center; margin-bottom: 40px; border-bottom: 1px solid var(--border-color); padding-bottom: 20px; position: relative; }
         .logo { font-size: 3rem; color: var(--gold-accent); margin-bottom: 10px; display: inline-block; }
         h1 { color: #fff; margin: 0; font-weight: 300; font-size: 2.5rem; }
         .subtitle { color: var(--text-muted); font-size: 1rem; margin-top: 5px; }
 
+        .lang-switch {
+            position: absolute;
+            top: 0;
+            left: 0; /* Positionné à gauche en RTL */
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            display: flex;
+        }
+        
+        .lang-btn {
+            background: none;
+            border: none;
+            padding: 5px 15px;
+            color: #888;
+            cursor: pointer;
+            font-family: var(--font-ui);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+        .lang-btn.active { background: var(--gold-accent); color: #000; font-weight: bold; }
+
+        /* GRID */
         .grid { display: grid; grid-template-columns: 1fr; gap: 30px; }
         @media(min-width: 768px) { .grid { grid-template-columns: 1fr 1fr; } }
 
@@ -34,32 +59,34 @@
         .panel:hover { border-color: var(--gold-accent); }
 
         .panel-title { color: #fff; display: flex; align-items: center; gap: 10px; margin-bottom: 15px; font-size: 1.4rem; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 10px; }
-        .bot-role { font-size: 0.7rem; color: var(--neon-green); font-family: var(--font-tech); text-transform: uppercase; margin-right: auto; }
+        .bot-role { font-size: 0.7rem; color: var(--neon-green); font-family: monospace; text-transform: uppercase; margin-right: auto; }
 
+        /* INPUTS */
         .input-group { margin-bottom: 15px; }
         label { display: block; font-size: 0.9rem; color: #888; margin-bottom: 5px; }
-        select, textarea, input[type="text"] { width: 100%; background: #000; border: 1px solid #333; color: #fff; padding: 10px; border-radius: 6px; font-family: var(--font-ui); box-sizing: border-box; text-align: right; direction: rtl; }
+        select, textarea, input[type="text"] { width: 100%; background: #000; border: 1px solid #333; color: #fff; padding: 10px; border-radius: 6px; font-family: var(--font-ui); box-sizing: border-box; }
         select:focus, textarea:focus, input:focus { outline: 1px solid var(--gold-accent); }
 
-        .btn-action { width: 100%; padding: 12px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.3s; font-size: 1rem; margin-top: 10px; }
-        .output-area { min-height: 150px; background: rgba(0,0,0,0.5); border: 1px dashed var(--border-color); border-radius: 8px; padding: 15px; margin-top: 20px; font-size: 0.95rem; }
+        /* BUTTONS & OUTPUT */
+        .btn-action { width: 100%; padding: 12px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 1rem; margin-top: 10px; }
+        .output-area { min-height: 150px; background: rgba(0,0,0,0.5); border: 1px dashed var(--border-color); border-radius: 8px; padding: 15px; margin-top: 20px; }
 
         .share-buttons { margin-top: 10px; display: flex; gap: 10px; }
-        .share-btn { flex: 1; padding: 8px; border-radius: 4px; color: #fff; text-decoration: none; font-size: 0.9rem; text-align: center; font-weight: bold; }
+        .share-btn { flex: 1; padding: 8px; border-radius: 4px; color: #fff; text-decoration: none; text-align: center; font-weight: bold; display: flex; align-items: center; justify-content: center; }
         .share-whatsapp { background: #25D366; }
         .share-facebook { background: #1877F2; }
         .share-twitter { background: #000; border: 1px solid #333; }
 
         .btn-trans { background: var(--gold-accent); color: #000; }
         .btn-trans:hover { background: #f1c40f; }
+        .result-arabic { font-family: var(--font-arabic); font-size: 1.6rem; color: var(--gold-accent); line-height: 1.6; }
+
         .btn-hadith { background: #2980b9; color: #fff; }
         .btn-hadith:hover { background: #3498db; }
-        
-        .result-arabic { font-family: var(--font-arabic); font-size: 1.6rem; color: var(--gold-accent); line-height: 1.6; }
-        .hadith-header { font-size: 0.8rem; color: var(--gold-accent); margin-bottom: 10px; font-family: var(--font-tech); border-bottom: 1px solid #333; padding-bottom:5px; }
+        .hadith-header { font-size: 0.8rem; color: var(--gold-accent); margin-bottom: 10px; font-family: monospace; border-bottom: 1px solid #333; padding-bottom: 5px; }
         .hadith-text { font-style: italic; color: #ddd; line-height: 1.5; margin-bottom: 15px; font-size: 1.1rem; }
-        .hadith-source { text-align: left; color: #888; font-size: 0.9rem; }
-        .error-msg { color: #e74c3c; font-weight: bold; background: rgba(231, 76, 60, 0.1); padding: 10px; border-radius: 5px; margin-top: 10px; text-align: right;}
+        .hadith-source { color: #888; font-size: 0.9rem; }
+        .error-msg { color: #e74c3c; font-weight: bold; background: rgba(231, 76, 60, 0.1); padding: 10px; border-radius: 5px; margin-top: 10px; }
 
     </style>
 </head>
@@ -67,9 +94,15 @@
 
 <div class="container">
     <header>
+        <!-- SÉLECTEUR DE LANGUE -->
+        <div class="lang-switch">
+            <button class="lang-btn active" onclick="setLanguage('ar')" id="btn-ar">العربية</button>
+            <button class="lang-btn" onclick="setLanguage('fr')" id="btn-fr">Français</button>
+        </div>
+
         <div class="logo">🏮</div> 
-        <h1>AL-MANARA</h1>
-        <p class="subtitle">المنارة | منارة المعرفة الإسلامية</p>
+        <h1 data-i18n="site_title">AL-MANARA</h1>
+        <p class="subtitle" data-i18n="site_subtitle">المنارة | منارة المعرفة الإسلامية</p>
     </header>
 
     <div class="grid">
@@ -77,13 +110,13 @@
         <!-- --- TRADUCTEUR --- -->
         <div class="panel">
             <div class="panel-title">
-                <span>🗣️</span> عبد البيان (المترجم)
-                <span class="bot-role">ترجمة</span>
+                <span>🗣️</span> <span data-i18n="translator_title">عبد البيان (المترجم)</span>
+                <span class="bot-role" data-i18n="role_translator">ترجمة</span>
             </div>
-            <p style="font-size: 0.8rem; color:#888; margin-bottom:15px;">ترجم من أي لغة إلى العربية والعكس.</p>
+            <p style="font-size: 0.8rem; color:#888; margin-bottom:15px;" data-i18n="translator_desc">ترجم من أي لغة إلى العربية والعكس.</p>
 
             <div class="input-group">
-                <label>اللغة المصدر :</label>
+                <label data-i18n="label_source">اللغة المصدر :</label>
                 <select id="sourceLang">
                     <option value="ar">العربية (Arabe)</option>
                     <option value="fr">Français</option>
@@ -93,35 +126,35 @@
             </div>
 
             <div class="input-group">
-                <label>النص :</label>
-                <textarea id="translateInput" rows="4" placeholder="اكتب النص هنا..."></textarea>
+                <label data-i18n="label_text">النص :</label>
+                <textarea id="translateInput" rows="4" data-i18n-ph="ph_text" placeholder="اكتب النص هنا..."></textarea>
             </div>
 
-            <button class="btn-action btn-trans" onclick="runTranslation()">ترجمة ⚡</button>
+            <button class="btn-action btn-trans" onclick="runTranslation()" data-i18n="btn_translate">ترجمة ⚡</button>
 
             <div id="translateOutput" class="output-area">
-                <span style="color:#555;">الترجمة ستظهر هنا...</span>
+                <span style="color:#555;">...</span>
             </div>
         </div>
 
 
-        <!-- --- BOT HADITH (INTÉGRÉ) --- -->
+        <!-- --- BOT HADITH --- -->
         <div class="panel">
             <div class="panel-title">
-                <span>📖</span> عبد العليم (خبير الحديث)
-                <span class="bot-role">الحديث النبوي</span>
+                <span>📖</span> <span data-i18n="hadith_title">عبد العليم (خبير الحديث)</span>
+                <span class="bot-role" data-i18n="role_hadith">الحديث النبوي</span>
             </div>
-            <p style="font-size: 0.8rem; color:#888; margin-bottom:15px;">ابحث في رياض الصالحين.</p>
+            <p style="font-size: 0.8rem; color:#888; margin-bottom:15px;" data-i18n="hadith_desc">ابحث في رياض الصالحين.</p>
 
             <div class="input-group">
-                <label>بحثك (مثلاً: نية، والدان، كذب) :</label>
-                <input type="text" id="hadithInput" placeholder="اكتب موضوعاً...">
+                <label data-i18n="label_search">بحثك :</label>
+                <input type="text" id="hadithInput" data-i18n-ph="ph_search" placeholder="اكتب موضوعاً...">
             </div>
 
-            <button class="btn-action btn-hadith" onclick="searchHadith()">بحث 📚</button>
+            <button class="btn-action btn-hadith" onclick="searchHadith()" data-i18n="btn_search">بحث 📚</button>
 
             <div id="hadithOutput" class="output-area">
-                <span style="color:#555;">أدخل موضوعاً لرؤية الحديث...</span>
+                <span style="color:#555;">...</span>
             </div>
         </div>
 
@@ -129,14 +162,92 @@
 </div>
 
 <script>
-    // --- BASE DE DONNÉES INTÉGRÉE (NE NÉCESSITE PLUS DATA.JS) ---
+    // --- DICTIONNAIRE DE TRADUCTION (INTERFACE) ---
+    const translations = {
+        ar: {
+            site_title: "AL-MANARA",
+            site_subtitle: "المنارة | منارة المعرفة الإسلامية",
+            translator_title: "عبد البيان (المترجم)",
+            role_translator: "ترجمة",
+            translator_desc: "ترجم من أي لغة إلى العربية والعكس.",
+            label_source: "اللغة المصدر :",
+            label_text: "النص :",
+            ph_text: "اكتب النص هنا...",
+            btn_translate: "ترجمة ⚡",
+            
+            hadith_title: "عبد العليم (خبير الحديث)",
+            role_hadith: "الحديث النبوي",
+            hadith_desc: "ابحث في رياض الصالحين.",
+            label_search: "بحثك (مثلاً: نية، والدان، كذب) :",
+            ph_search: "اكتب موضوعاً...",
+            btn_search: "بحث 📚",
+            error_msg: "لم يتم العثور. جرب: 'نية'، 'والدان'، 'كذب'.",
+            conn_error: "خطأ في الاتصال."
+        },
+        fr: {
+            site_title: "AL-MANARA",
+            site_subtitle: "Le Phare | Phare de la Connaissance Islamique",
+            translator_title: "Abdul Bayan (Traducteur)",
+            role_translator: "Traduction",
+            translator_desc: "Traduisez de n'importe quelle langue vers l'Arabe et vice-versa.",
+            label_source: "Langue Source :",
+            label_text: "Texte :",
+            ph_text: "Écrivez votre texte ici...",
+            btn_translate: "TRADUIRE ⚡",
+            
+            hadith_title: "Abdul Alim (Expert Hadith)",
+            role_hadith: "Hadith Prophétique",
+            hadith_desc: "Cherchez dans Riyad as-Salihin.",
+            label_search: "Votre recherche (ex: Intention, Parents, Mensonge) :",
+            ph_search: "Tapez un sujet...",
+            btn_search: "CHERCHER 📚",
+            error_msg: "Non trouvé. Essayez: 'Intention', 'Parents', 'Mensonge'.",
+            conn_error: "Erreur de connexion."
+        }
+    };
+
+    // --- FONCTION DE CHANGEMENT DE LANGUE ---
+    function setLanguage(lang) {
+        // 1. Changer le texte
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (translations[lang][key]) {
+                el.innerText = translations[lang][key];
+            }
+        });
+
+        // 2. Changer les placeholders (texte vide dans les cases)
+        document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+            const key = el.getAttribute('data-i18n-ph');
+            if (translations[lang][key]) {
+                el.placeholder = translations[lang][key];
+            }
+        });
+
+        // 3. Gérer la direction (RTL/LTR) et les boutons actifs
+        if (lang === 'ar') {
+            document.documentElement.dir = "rtl";
+            document.documentElement.lang = "ar";
+            document.body.style.textAlign = "right";
+        } else {
+            document.documentElement.dir = "ltr";
+            document.documentElement.lang = "fr";
+            document.body.style.textAlign = "left";
+        }
+
+        // Mise à jour visuelle des boutons
+        document.getElementById('btn-ar').className = lang === 'ar' ? 'lang-btn active' : 'lang-btn';
+        document.getElementById('btn-fr').className = lang === 'fr' ? 'lang-btn active' : 'lang-btn';
+    }
+
+    // --- BASE DE DONNÉES HADITH (INTÉGRÉE) ---
     const hadithDB = [
-        { keywords: ["نية", "نيات"], text: "إنما الأعمال بالنيات، وإنما لكل امرئ ما نوى.", ref: "Riyad as-Salihin", page: "1" },
-        { keywords: ["bonne action", "صالح"], text: "أبشروا وأملوا ما يسركم، والاستعانة بالله ولا تعجزن.", ref: "Riyad as-Salihin", page: "59" },
-        { keywords: ["والدان", "أب", "أم"], text: "الجنة تحت أقدام الأمهات.", ref: "Riyad as-Salihin", page: "338" },
-        { keywords: ["mentir", "كذب"], text: "عليكم بالصدق، فإن الصدق يهدي إلى البر، وإن البر يهدي إلى الجنة.", ref: "Riyad as-Salihin", page: "64" },
-        { keywords: ["colère", "غضب"], text: "ليس الشديد بالصُّرَعة، إنما الشديد الذي يملك نفسه عند الغضب.", ref: "Riyad as-Salihin", page: "1562" },
-        { keywords: ["sourire", "بشاشة"], text: "لا تحقرن من المعروف شيئاً، ولو أن تلقى أخاك بوجه طلق.", ref: "Riyad as-Salihin", page: "622" }
+        { keywords: ["نية", "نيات", "intention", "intentions"], text: "إنما الأعمال بالنيات، وإنما لكل امرئ ما نوى.", ref: "Riyad as-Salihin", page: "1" },
+        { keywords: ["bonne action", "صالح", "bienfaisance", "aide"], text: "أبشروا وأملوا ما يسركم، والاستعانة بالله ولا تعجزن.", ref: "Riyad as-Salihin", page: "59" },
+        { keywords: ["والدان", "أب", "أم", "parents", "mère", "père"], text: "الجنة تحت أقدام الأمهات.", ref: "Riyad as-Salihin", page: "338" },
+        { keywords: ["mentir", "كذب", "mensonge"], text: "عليكم بالصدق، فإن الصدق يهدي إلى البر، وإن البر يهدي إلى الجنة.", ref: "Riyad as-Salihin", page: "64" },
+        { keywords: ["colère", "غضب", "se maîtriser"], text: "ليس الشديد بالصُّرَعة، إنما الشديد الذي يملك نفسه عند الغضب.", ref: "Riyad as-Salihin", page: "1562" },
+        { keywords: ["sourire", "بشاشة", "fraternité"], text: "لا تحقرن من المعروف شيئاً، ولو أن تلقى أخاك بوجه طلق.", ref: "Riyad as-Salihin", page: "622" }
     ];
 
     // --- CERVEAU 1 : TRADUCTEUR ---
@@ -145,36 +256,32 @@
         const text = document.getElementById('translateInput').value.trim();
         const outputDiv = document.getElementById('translateOutput');
 
-        if(!text) { alert("الرجاء إدخال نص."); return; }
+        if(!text) { alert("Text required / Texte requis."); return; }
 
-        outputDiv.innerHTML = '<span style="color:var(--neon-green)">جاري الاتصال...</span>';
+        outputDiv.innerHTML = '<span style="color:var(--neon-green)">...</span>';
 
         try {
-            // Détection auto : Si Arabe -> Français. Si autre -> Arabe.
             let target = "ar";
             if (lang === "ar") target = "fr";
 
             const apiUrl = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=${lang}|${target}`;
             const response = await fetch(apiUrl);
-            
-            if(!response.ok) throw new Error("Erreur API");
+            if(!response.ok) throw new Error("Error");
             const data = await response.json();
 
             if(data.responseStatus === 200) {
                 const t = data.responseData.translatedText;
                 const dir = (target === "ar") ? "rtl" : "ltr";
                 outputDiv.innerHTML = `
-                    <div class="result-arabic" style="direction:${dir}; text-align:${dir === 'rtl'?'right':'left'}">${t}</div>
+                    <div class="result-arabic" style="direction:${dir}; text-align:${dir === 'rtl'?'right':'left'}; font-family:${target === 'ar'?'var(--font-arabic)':'var(--font-ui)'}">${t}</div>
                     <div class="share-buttons">
-                        <a href="https://api.whatsapp.com/send?text=${encodeURIComponent(t)}" target="_blank" class="share-btn share-whatsapp">واتساب</a>
-                        <a href="https://twitter.com/intent/tweet?text=${encodeURIComponent(t)}" target="_blank" class="share-btn share-twitter">تويتر</a>
+                        <a href="https://api.whatsapp.com/send?text=${encodeURIComponent(t)}" target="_blank" class="share-btn share-whatsapp">WhatsApp</a>
+                        <a href="https://twitter.com/intent/tweet?text=${encodeURIComponent(t)}" target="_blank" class="share-btn share-twitter">Twitter</a>
                     </div>
                 `;
-            } else {
-                outputDiv.innerHTML = `<div class="error-msg">Erreur de traduction.</div>`;
             }
         } catch (error) {
-            outputDiv.innerHTML = `<div class="error-msg">Erreur de connexion (Testez sur le site en ligne, pas en local).</div>`;
+            outputDiv.innerHTML = `<div class="error-msg">Error</div>`;
         }
     }
 
@@ -182,9 +289,10 @@
     function searchHadith() {
         const input = document.getElementById('hadithInput').value.trim();
         const outputDiv = document.getElementById('hadithOutput');
+        const currentLang = document.documentElement.lang; // Pour afficher le bon message d'erreur
         let found = false;
 
-        if(!input) { alert("الرجاء كتابة موضوع."); return; }
+        if(!input) { alert("Input required / Requis."); return; }
 
         hadithDB.forEach(item => {
             if(item.keywords.some(k => input.includes(k))) {
@@ -192,8 +300,8 @@
                     <div class="hadith-header">📚 ${item.ref} | Page ${item.page}</div>
                     <div class="hadith-text">"${item.text}"</div>
                     <div class="share-buttons">
-                        <a href="https://api.whatsapp.com/send?text=${encodeURIComponent('حديث: ' + item.text)}" target="_blank" class="share-btn share-whatsapp">واتساب</a>
-                        <a href="https://twitter.com/intent/tweet?text=${encodeURIComponent('حديث: ' + item.text)}" target="_blank" class="share-btn share-twitter">تويتر</a>
+                        <a href="https://api.whatsapp.com/send?text=${encodeURIComponent('Hadith: ' + item.text)}" target="_blank" class="share-btn share-whatsapp">WhatsApp</a>
+                        <a href="https://twitter.com/intent/tweet?text=${encodeURIComponent('Hadith: ' + item.text)}" target="_blank" class="share-btn share-twitter">Twitter</a>
                     </div>
                 `;
                 found = true;
@@ -201,7 +309,7 @@
         });
 
         if(!found) {
-            outputDiv.innerHTML = '<div class="error-msg">لم يتم العثور. جرب: "نية"، "والدان"، "كذب".</div>';
+            outputDiv.innerHTML = `<div class="error-msg">${translations[currentLang].error_msg}</div>`;
         }
     }
 </script>
