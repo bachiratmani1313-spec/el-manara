@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Al-Manara AI - Le Phare de la Connaissance</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=JetBrains+Mono&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* DESIGN GLOBAL */
+        :root {
+            --bg-dark: #0a0f0d;
+            --bg-panel: #111a16;
+            --gold-accent: #d4af37;
+            --neon-green: #2ecc71;
+            --text-main: #e0e0e0;
+            --border-color: #2c3e30;
+            --font-ui: 'Inter', sans-serif;
+            --font-tech: 'JetBrains Mono', monospace;
+            --font-arabic: 'Amiri', serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: var(--font-ui);
+            padding: 20px;
+        }
+
+        .container { max-width: 1000px; margin: 0 auto; }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 20px;
+        }
+
+        .logo {
+            font-size: 3rem;
+            color: var(--gold-accent);
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+
+        h1 { color: #fff; margin: 0; font-weight: 300; letter-spacing: 2px; }
+        .subtitle { color: var(--text-muted); font-size: 0.9rem; letter-spacing: 1px; margin-top: 5px; }
+
+        /* GRILLE DES 2 BOTS */
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+        @media(min-width: 768px) {
+            .grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        .panel {
+            background: var(--bg-panel);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            transition: 0.3s;
+        }
+
+        .panel:hover { border-color: var(--gold-accent); }
+
+        .panel-title {
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding-bottom: 10px;
+        }
+
+        .bot-role { font-size: 0.7rem; color: var(--neon-green); font-family: var(--font-tech); text-transform: uppercase; margin-left: auto; }
+
+        /* --- STYLE COMMUN DES BOTS --- */
+        .input-group { margin-bottom: 15px; }
+        label { display: block; font-size: 0.8rem; color: #888; margin-bottom: 5px; }
+        
+        select, textarea, input[type="text"] {
+            width: 100%;
+            background: #000;
+            border: 1px solid #333;
+            color: #fff;
+            padding: 10px;
+            border-radius: 6px;
+            font-family: var(--font-ui);
+            box-sizing: border-box;
+        }
+        select:focus, textarea:focus, input:focus { outline: 1px solid var(--gold-accent); }
+
+        .btn-action {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .output-area {
+            min-height: 150px;
+            background: rgba(0,0,0,0.5);
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+            font-size: 0.95rem;
+        }
+
+        /* --- SPÉCIFIQUE TRADUCTEUR --- */
+        .btn-trans { background: var(--gold-accent); color: #000; }
+        .btn-trans:hover { background: #f1c40f; }
+        .result-arabic {
+            font-family: var(--font-arabic);
+            font-size: 1.6rem;
+            color: var(--gold-accent);
+            direction: rtl;
+            text-align: right;
+            line-height: 1.6;
+        }
+
+        /* --- SPÉCIFIQUE HADITH --- */
+        .btn-hadith { background: #2980b9; color: #fff; }
+        .btn-hadith:hover { background: #3498db; }
+        
+        .hadith-header {
+            font-size: 0.8rem;
+            color: var(--gold-accent);
+            margin-bottom: 10px;
+            font-family: var(--font-tech);
+            border-bottom: 1px solid #333;
+            padding-bottom: 5px;
+        }
+        .hadith-text { font-style: italic; color: #ddd; line-height: 1.5; margin-bottom: 15px; }
+        .hadith-source { text-align: right; color: #888; font-size: 0.9rem; }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <!-- LOGO: Un Phare -->
+        <div class="logo">🏮</div> 
+        <h1>AL-MANARA</h1>
+        <p class="subtitle">المنارة | LE PHARE DE LA CONNAISSANCE ISLAMIQUE</p>
+    </header>
+
+    <div class="grid">
+
+        <!-- ========================================== -->
+        <!-- PRODUIT 1 : ABDUL BAYAN (TRADUCTEUR)       -->
+        <!-- ========================================== -->
+        <div class="panel">
+            <div class="panel-title">
+                <span>🗣️</span> Abdul Bayan (Le Serviteur de l'Éloquence)
+                <span class="bot-role">Traducteur</span>
+            </div>
+            <p style="font-size: 0.8rem; color:#888; margin-bottom:15px;">Traduit l'Humain en Arabe.</p>
+
+            <div class="input-group">
+                <label>Langue Source :</label>
+                <select id="sourceLang">
+                    <option value="fr">Français</option>
+                    <option value="de">Allemand (Deutsch)</option>
+                    <option value="en">Anglais (English)</option>
+                    <option value="es">Espagnol (Español)</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label>Texte à traduire :</label>
+                <textarea id="translateInput" rows="4" placeholder="Écrivez votre texte ici..."></textarea>
+            </div>
+
+            <button class="btn-action btn-trans" onclick="runTranslation()">ALLUMER LA LUMIÈRE (TRADUIRE)</button>
+
+            <div id="translateOutput" class="output-area">
+                <span style="color:#555; font-style:italic;">Le texte illuminé apparaîtra ici...</span>
+            </div>
+        </div>
+
+
+        <!-- ========================================== -->
+        <!-- PRODUIT 2 : ABDUL ALIM (RYAD AS-SALIHIN)   -->
+        <!-- ========================================== -->
+        <div class="panel">
+            <div class="panel-title">
+                <span>📖</span> Abdul Alim (Le Serviteur du Savant)
+                <span class="bot-role">Expert Hadith</span>
+            </div>
+            <p style="font-size: 0.8rem; color:#888; margin-bottom:15px;">Guide vers les paroles du Prophète.</p>
+
+            <div class="input-group">
+                <label>Votre recherche (ex: Bonne action, Parents) :</label>
+                <input type="text" id="hadithInput" placeholder="Tapez un sujet...">
+            </div>
+
+            <button class="btn-action btn-hadith">CHERCHER LA LUMIÈRE (HADITH)</button>
+
+            <div id="hadithOutput" class="output-area">
+                <span style="color:#555; font-style:italic;">Entrez un sujet pour voir le hadith...</span>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    // --- CERVEAU 1 : TRADUCTEUR ---
+    async function runTranslation() {
+        const lang = document.getElementById('sourceLang').value;
+        const text = document.getElementById('translateInput').value.trim();
+        const outputDiv = document.getElementById('translateOutput');
+
+        if(!text) { alert("Veuillez entrer du texte."); return; }
+
+        outputDiv.innerHTML = '<span style="color:var(--gold-accent)">TRAITEMENT...</span>';
+
+        try {
+            const apiUrl = `https://lingva.ml/api/v1/${lang}/ar/${encodeURIComponent(text)}`;
+            const response = await fetch(apiUrl);
+            const data = await response.json();
+
+            if(data.translation) {
+                outputDiv.innerHTML = `<div class="result-arabic">${data.translation}</div>`;
+            } else {
+                outputDiv.innerHTML = "Erreur de traduction.";
+            }
+        } catch (error) {
+            outputDiv.innerHTML = "Erreur de connexion internet.";
+        }
+    }
+
+    // --- CERVEAU 2 : HADITH ---
+    const hadithDatabase = [
+        { keywords: ["bonne action", "bonnes œuvres", "bienfaisance"], hadith: "Le Prophète a dit : « Le fait que vous alliez à la mosquée tôt ou tard est une bonne action. »", book: "Riyad as-Salihin", chapter: "Bienfaisance", hadithNum: 1012, page: "Vol.2 - Pg. 15" },
+        { keywords: ["parents", "mère", "père"], hadith: "Le Prophète a dit : « Le Paradis se trouve sous les pieds des mères. »", book: "Riyad as-Salihin", chapter: "Devoirs des musulmans", hadithNum: 338, page: "Vol.1 - Pg. 28" },
+        { keywords: ["mentir", "mensonge"], hadith: "Le Prophète a dit : « Parlez la vérité, même si elle est amère. »", book: "Riyad as-Salihin", chapter: "Interdiction du Mensonge", hadithNum: 1552, page: "Vol.2 - Pg. 158" },
+        { keywords: ["colère", "se maîtriser"], hadith: "Le Prophète a dit : « L'homme fort est celui qui se contrôle quand il est en colère. »", book: "Riyad as-Salihin", chapter: "Modération", hadithNum: 1740, page: "Vol.2 - Pg. 320" },
+        { keywords: ["sourire", "fraternité"], hadith: "Ne dédaigne aucune action de bienfaisance, même si elle consiste à rencontrer ton frère avec un visage souriant.", book: "Riyad as-Salihin", chapter: "Bienfaisance", hadithNum: 622, page: "Vol.1 - Pg. 110" }
+    ];
+
+    function searchHadith() {
+        const input = document.getElementById('hadithInput').value.toLowerCase().trim();
+        const outputDiv = document.getElementById('hadithOutput');
+
+        if(!input) { alert("Écrivez un sujet."); return; }
+
+        let found = null;
+        for(let item of hadithDatabase) {
+            for(let keyword of item.keywords) {
+                if(input.includes(keyword)) { found = item; break; }
+            }
+            if(found) break;
+        }
+
+        if(found) {
+            outputDiv.innerHTML = `
+                <div class="hadith-header">📚 ${found.book} | ${found.chapter}<br>📄 Page ${found.page} | Hadith #${found.hadithNum}</div>
+                <div class="hadith-text">"${found.hadith}"</div>
+                <div class="hadith-source">— Rapporté authentiquement</div>
+            `;
+        } else {
+            outputDiv.innerHTML = `<div style="color:#e74c3c">Lumière non trouvée.</div><div style="color:#888; font-size:0.8rem;">Essayez : 'bonne action', 'parents', 'colère'...</div>`;
+        }
+    }
+</script>
+
+</body>
+</html>
